@@ -16,6 +16,8 @@ public class InputManager : MonoBehaviour
     private Vector3 m_TouchStartPosition;
     private float m_GroundZ = 0;
 
+    public KawaseBlur KaBlur;
+
     private void OnEnable()
     {
         if (!Instance)
@@ -111,4 +113,16 @@ public class InputManager : MonoBehaviour
         interactionCamera.enabled = false;
         agent.isStopped = false;
     }
+
+
+    private void OnGUI()
+    {
+        if(GUI.Button(new Rect(0, 0, 100,50), "test"))
+        {
+           var tmp = KaBlur.CreateV2(!KaBlur.scriptablePass.copyToFramebuffer, 1);
+            KaBlur.scriptablePass = tmp;
+
+        }
+    }
+
 }
